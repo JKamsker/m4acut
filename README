@@ -25,7 +25,7 @@ AAC frame boundaries) and the resulting files can be played gaplessly.
 
 OPTIONS
 =======
-
+````bash
 -h, --help
 :   Show command help
 
@@ -64,3 +64,33 @@ OPTIONS
     By default, UTF-8 is assumed.
 
 -c, -C, and -s/-e are Mutually exclusive and cannot be set at the same time.
+````
+
+
+
+RUNNING PRECOMPILED BINARIES
+=================
+
+Either use the docker image (recommended) or use this commands (Tested on ubuntu):
+
+```bash
+# prerequisits
+apt update && apt install -y wget unzip
+
+# downloading releases of m4acut && the required shared libraries
+wget https://github.com/JKamsker/l-smash/releases/download/v2.14.7-beta-02/Artifacts.zip \
+&& unzip Artifacts.zip \
+&& rm Artifacts.zip
+
+wget https://github.com/JKamsker/m4acut/releases/download/v0.1.3-alpha-02/Artifacts.zip \
+&& unzip Artifacts.zip \
+&& rm Artifacts.zip
+
+# Setting environment variables & chmod
+chmod +x m4acut \
+&& LD_LIBRARY_PATH=$PWD/lib \
+&& export LD_LIBRARY_PATH \
+
+# running the binary
+./m4acut
+```
